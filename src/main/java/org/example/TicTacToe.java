@@ -1,22 +1,21 @@
 package org.example;
 
-import java.util.Scanner;
-
 public class TicTacToe {
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+        int slot = 5;
 
-        int slot = getUserInput(sc);
+        int[] result = convertToIndex(slot);
 
-        System.out.println("Selected Slot: " + slot);
+        System.out.println("Row: " + result[0]);
+        System.out.println("Column: " + result[1]);
     }
 
-    public static int getUserInput(Scanner sc) {
+    public static int[] convertToIndex(int slot) {
 
-        System.out.print("Enter slot (1-9): ");
-        int slot = sc.nextInt();
+        int row = (slot - 1) / 3;
+        int col = (slot - 1) % 3;
 
-        return slot;
+        return new int[]{row, col};
     }
 }
