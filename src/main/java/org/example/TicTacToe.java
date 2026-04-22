@@ -3,19 +3,25 @@ package org.example;
 public class TicTacToe {
     public static void main(String[] args) {
 
-        char[][] board = new char[3][3];
+        int toss = (int)(Math.random() * 2);
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                board[i][j] = '-';
-            }
+        char player1Symbol;
+        char player2Symbol;
+        String currentPlayer;
+
+        if (toss == 0) {
+            currentPlayer = "Player 1";
+            player1Symbol = 'X';
+            player2Symbol = 'O';
+        } else {
+            currentPlayer = "Player 2";
+            player1Symbol = 'O';
+            player2Symbol = 'X';
         }
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                System.out.print(board[i][j] + " ");
-            }
-            System.out.println();
-        }
+        System.out.println("Toss Result: " + toss);
+        System.out.println("Player 1 Symbol: " + player1Symbol);
+        System.out.println("Player 2 Symbol: " + player2Symbol);
+        System.out.println("First Turn: " + currentPlayer);
     }
 }
