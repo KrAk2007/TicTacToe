@@ -1,21 +1,29 @@
 package org.example;
 
 public class TicTacToe {
+
     public static void main(String[] args) {
 
-        int slot = 5;
+        char[][] board = {
+                {'-', '-', '-'},
+                {'-', '-', '-'},
+                {'-', '-', '-'}
+        };
 
-        int[] result = convertToIndex(slot);
+        int row = 1;
+        int col = 1;
 
-        System.out.println("Row: " + result[0]);
-        System.out.println("Column: " + result[1]);
+        boolean valid = isValidMove(board, row, col);
+
+        System.out.println("Valid Move: " + valid);
     }
 
-    public static int[] convertToIndex(int slot) {
+    public static boolean isValidMove(char[][] board, int row, int col) {
 
-        int row = (slot - 1) / 3;
-        int col = (slot - 1) % 3;
+        if (row >= 0 && row < 3 && col >= 0 && col < 3 && board[row][col] == '-') {
+            return true;
+        }
 
-        return new int[]{row, col};
+        return false;
     }
 }
