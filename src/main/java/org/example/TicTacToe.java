@@ -1,68 +1,41 @@
 package org.example;
 
-import java.util.Random;
-
 public class TicTacToe {
 
     public static void main(String[] args) {
 
         char[][] board = {
-                {'-', '-', '-'},
-                {'-', '-', '-'},
+                {'X', 'X', 'X'},
+                {'O', '-', 'O'},
                 {'-', '-', '-'}
         };
 
-        char current = 'X';
-        boolean gameOver = false;
-        Random random = new Random();
+        char winner = '-';
 
-        while (!gameOver) {
-
-            int row, col;
-
-            while (true) {
-                row = random.nextInt(3);
-                col = random.nextInt(3);
-                if (board[row][col] == '-') {
-                    board[row][col] = current;
-                    break;
-                }
+        for (int i = 0; i < 3; i++) {
+            if (board[i][0] != '-' && board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
+                winner = board[i][0];
             }
+        }
 
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    System.out.print(board[i][j] + " ");
-                }
-                System.out.println();
+        for (int j = 0; j < 3; j++) {
+            if (board[0][j] != '-' && board[0][j] == board[1][j] && board[1][j] == board[2][j]) {
+                winner = board[0][j];
             }
+        }
 
-            if (
-                    (board[0][0] == current && board[0][1] == current && board[0][2] == current) ||
-                            (board[1][0] == current && board[1][1] == current && board[1][2] == current) ||
-                            (board[2][0] == current && board[2][1] == current && board[2][2] == current) ||
-                            (board[0][0] == current && board[1][0] == current && board[2][0] == current) ||
-                            (board[0][1] == current && board[1][1] == current && board[2][1] == current) ||
-                            (board[0][2] == current && board[1][2] == current && board[2][2] == current) ||
-                            (board[0][0] == current && board[1][1] == current && board[2][2] == current) ||
-                            (board[0][2] == current && board[1][1] == current && board[2][0] == current)
-            ) {
-                System.out.println("Winner: " + current);
-                gameOver = true;
-            }
+        if (board[0][0] != '-' && board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
+            winner = board[0][0];
+        }
 
-            boolean draw = true;
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    if (board[i][j] == '-') draw = false;
-                }
-            }
+        if (board[0][2] != '-' && board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
+            winner = board[0][2];
+        }
 
-            if (draw && !gameOver) {
-                System.out.println("Draw");
-                gameOver = true;
-            }
-
-            current = (current == 'X') ? 'O' : 'X';
+        if (winner != '-') {
+            System.out.println("Winner: " + winner);
+        } else {
+            System.out.println("No winner");
         }
     }
 }
