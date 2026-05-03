@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Random;
+
 public class TicTacToe {
 
     public static void main(String[] args) {
@@ -12,15 +14,17 @@ public class TicTacToe {
             }
         }
 
-        int row = 2;
-        int col = 0;
-        char symbol = 'O';
+        Random random = new Random();
+        int row, col;
 
-        if (row >= 0 && row < 3 && col >= 0 && col < 3 && board[row][col] == '-') {
-            board[row][col] = symbol;
-            System.out.println("Move successful");
-        } else {
-            System.out.println("Invalid move");
+        while (true) {
+            row = random.nextInt(3);
+            col = random.nextInt(3);
+
+            if (board[row][col] == '-') {
+                board[row][col] = 'O';
+                break;
+            }
         }
 
         for (int i = 0; i < 3; i++) {
